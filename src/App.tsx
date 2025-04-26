@@ -1,20 +1,25 @@
 // import { mockReviews } from "@/constants/data";
-import { fetchReviews } from "./lib";
 import Footer from "./components/footer";
 import ReviewList from "./components/review-list";
 import ReviewSummary from "./components/review-summary";
-import { useEffect, useState } from "react";
-import { Review } from "./types";
+import { Button } from "./components/ui/button";
+import {useReview} from "./hooks/useReview";
+// import { Review } from "./types";
 
 export default function App() {
-  const [reviews, setReviews] = useState<Review[]>([]);
+  const {reviews, isError, isLoading, mutate} = useReview();
 
-  useEffect(() => {
-    fetchReviews().then((reviews) => {
-      // console.log(reviews);
-      setReviews(reviews);
-    });
-  }, []);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (isError) {
+    return (
+      <div className="flex flex-col justify-center items-center gap-4 w-fit mx-auto h-screen">
+        <p>レビューの取得に失敗しました。</p>
+        <p><Button onClick={()=> mutate}>再試行</Button></p>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -23,12 +28,12 @@ export default function App() {
           <ReviewSummary />
         </div>
         <div className="lg:w-3/5 px-5 py-6 overflow-y-auto">
-        <div className="lg:max-w-[600px]">
-    <h2 className="text-lg font-bold mb-6">全てのレビュー</h2>
-        {reviews.map((review) => (
-         <ReviewList review={review} key={review.id} />
-         ))}
-        </div>
+          <div className="lg:max-w-[600px]">
+            <h2 className="text-lg font-bold mb-6">全てのレビュー</h2>
+            {reviews.map((review) => (
+              <ReviewList review={review} key={review.id} />
+            ))}
+          </div>
         </div>
       </div>
       <Footer />
