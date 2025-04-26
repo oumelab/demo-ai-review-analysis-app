@@ -6,16 +6,18 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "./ui/button";
+// import { Button } from "./ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ThumbsUp, ThumbsDown, Pen } from "lucide-react";
-// import { mockAISummary as AISummary } from "@/constants/data";
+import { mockAISummary as AISummary } from "@/constants/data";
 import StarRating from "./star-rating";
 import useAISummaryLogic from "@/hooks/useAISummaryLogic";
 
 
 export default function AiSummaryCard() {
-  const { averageRating, AISummary, handleClick, error, isLoading } = useAISummaryLogic();
+  // 静的デプロイのためモックデータに書き換え
+  // const { averageRating, AISummary, handleClick, error, isLoading } = useAISummaryLogic();
+  const { averageRating } = useAISummaryLogic();
 
   return (
     <Card className="w-full lg:w-[500px] min-h-[380px] bg-linear-to-tl from-indigo-50 to-white">
@@ -30,7 +32,7 @@ export default function AiSummaryCard() {
         </div>
       </CardHeader>
 
-      {error && !isLoading && (
+      {/* {error && !isLoading && (
         <CardContent className="flex justify-center">
           <p className="text-red-500">{error}</p>
         </CardContent>
@@ -40,15 +42,15 @@ export default function AiSummaryCard() {
         <CardContent className="flex justify-center">
           <p className="text-gray-500">Loading...</p>
         </CardContent>
-      )}
+      )} */}
 
-      {(AISummary === null) && !isLoading ? (
+      {/* {(AISummary === null) && !isLoading ? (
          <CardContent className="flex justify-center">
          <Button onClick={handleClick} className="w-full md:w-fit">
            Generate
          </Button>
        </CardContent>
-      ) : !isLoading && AISummary && (     
+      ) : !isLoading && AISummary && (      */}
       <CardContent>
         <Tabs defaultValue="summary" className="space-y-6">
           <TabsList className="grid w-full grid-cols-3 gap-2">
@@ -78,7 +80,7 @@ export default function AiSummaryCard() {
           </TabsContent>
           </Tabs>
       </CardContent>
-      )}
+      {/* )} */}
     </Card>
   )
 }

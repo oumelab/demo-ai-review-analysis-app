@@ -19,7 +19,6 @@ const fetcher: Fetcher<GoogleSheetResponse, string> = (url: string) =>
 export const useReview = () => {
   const {data, error, mutate} = useSWR<GoogleSheetResponse, Error>(URL, fetcher);
 
-  console.log("data", data);
   const valuesWithoutHeader = data?.values.slice(1);
   const reviews: Review[] = valuesWithoutHeader?.map((row: string[]) => ({
     id: parseInt(row[0]),
