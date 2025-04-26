@@ -54,3 +54,6 @@ export const mockAISummary = {
   ],
   negativePoints: ["音響設備の改善の余地", "会場の一部の設備"],
 };
+
+// GitHubのURL
+export const GITHUB_URL = "https://github.com/oumelab/demo-ai-review-analysis-app";

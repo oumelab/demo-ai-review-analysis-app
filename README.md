@@ -2,7 +2,7 @@
 
 An AI-powered web app for analyzing and summarizing user reviews.
 
-This app is based on the hands-on session project from [Blueberry Mojito](https://b13o.com/), a React learning community.<br>
+This app is based on the hands-on session project from [Blueberry Mojito (b13o)](https://b13o.com/), a React learning community.<br>
 The code includes some modifications and enhancements made by me for personal learning purposes, such as:
 
 - Integrating the Google Sheets API to fetch user reviews data.
@@ -36,18 +36,17 @@ The code includes some modifications and enhancements made by me for personal le
 
 ## 📸 Demo
 
-> (★ デプロイURLがあればここにリンクとスクリーンショットを載せるとさらに良いです)
 
 [View Demo Site](https://demo-ai-review-analysis-app.pages.dev/)
 
-
+<a href="https://demo-ai-review-analysis-app.pages.dev/" target="_blank">
 <picture width="100%" height="auto" loading="lazy">
   <source
     srcset="./public/screenshot.webp" 
     type="image/webp" />
   <img src="./public/screenshot.png" alt="screenshot" />
 </picture>
-
+</a>
 
 
 ## 📚 Learning Purpose
