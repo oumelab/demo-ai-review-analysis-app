@@ -1,8 +1,11 @@
 import {Review} from "@/types";
 import useSWR, { Fetcher } from "swr";
 
+const SHEET_API_KEY = import.meta.env.VITE_SHEET_API_KEY;
+const SHEET_ID = import.meta.env.VITE_SHEET_ID;
+const SHEET_NAME = import.meta.env.VITE_SHEET_NAME;
 const URL =
-  "https://sheets.googleapis.com/v4/spreadsheets/1MESw82pdLGuyrVMWGb0vMk_p5LIiKpK_2QtJw2C9Jp4/values/mock-reviews?key=AIzaSyABLrOoN2FKx-p8fhpUBrG9j_IWblt1s0w";
+  `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_NAME}?key=${SHEET_API_KEY}`;
 
   interface GoogleSheetResponse {
     values: string[][];
