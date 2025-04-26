@@ -16,6 +16,7 @@ const calculateAverageRating = (reviews: { rating: number }[]): number => {
 export default function useAISummaryLogic() {
   const [AISummary, setAISummary] = useState<null | AISummary>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   // レビューの平均評価を計算する関数
   const averageRating = calculateAverageRating(mockReviews);
@@ -53,6 +54,7 @@ export default function useAISummaryLogic() {
 
   const handleClick = async () => {
     try {
+      setIsLoading(true);
       const response = await genAI.models.generateContent({
         model: "gemini-1.5-flash",
         contents: prompt,
@@ -62,8 +64,10 @@ export default function useAISummaryLogic() {
         const jsonData = JSON.parse(text) as AISummary;
         setAISummary(jsonData);
         setError(null);
+        setIsLoading(false);
       }
     } catch (error) {
+      setIsLoading(false);
       console.error(error);
       setError("レビュー要約の生成に失敗しました。");
     }
@@ -73,5 +77,6 @@ export default function useAISummaryLogic() {
     averageRating,
     handleClick,
     error,
+    isLoading,
   };
 }

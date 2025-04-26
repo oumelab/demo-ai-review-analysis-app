@@ -15,7 +15,7 @@ import useAISummaryLogic from "@/hooks/useAISummaryLogic";
 
 
 export default function AiSummaryCard() {
-  const { averageRating, AISummary, handleClick, error } = useAISummaryLogic();
+  const { averageRating, AISummary, handleClick, error, isLoading } = useAISummaryLogic();
 
   return (
     <Card className="w-full lg:w-[500px] min-h-[380px] bg-linear-to-tl from-indigo-50 to-white">
@@ -30,19 +30,25 @@ export default function AiSummaryCard() {
         </div>
       </CardHeader>
 
-      {error && (
+      {error && !isLoading && (
         <CardContent className="flex justify-center">
           <p className="text-red-500">{error}</p>
         </CardContent>
       )}
 
-      {AISummary === null ? (
+      {isLoading && (
+        <CardContent className="flex justify-center">
+          <p className="text-gray-500">Loading...</p>
+        </CardContent>
+      )}
+
+      {(AISummary === null) && !isLoading ? (
          <CardContent className="flex justify-center">
          <Button onClick={handleClick} className="w-full md:w-fit">
            Generate
          </Button>
        </CardContent>
-      ) : (     
+      ) : !isLoading && AISummary && (     
       <CardContent>
         <Tabs defaultValue="summary" className="space-y-6">
           <TabsList className="grid w-full grid-cols-3 gap-2">
