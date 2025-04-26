@@ -1,9 +1,20 @@
-import { mockReviews } from "@/constants/data";
+// import { mockReviews } from "@/constants/data";
+import { fetchReviews } from "./lib";
 import Footer from "./components/footer";
 import ReviewList from "./components/review-list";
 import ReviewSummary from "./components/review-summary";
+import { useEffect, useState } from "react";
+import { Review } from "./types";
 
 export default function App() {
+  const [reviews, setReviews] = useState<Review[]>([]);
+
+  useEffect(() => {
+    fetchReviews().then((reviews) => {
+      // console.log(reviews);
+      setReviews(reviews);
+    });
+  }, []);
 
   return (
     <>
@@ -14,7 +25,7 @@ export default function App() {
         <div className="lg:w-3/5 px-5 py-6 overflow-y-auto">
         <div className="lg:max-w-[600px]">
     <h2 className="text-lg font-bold mb-6">全てのレビュー</h2>
-        {mockReviews.map((review) => (
+        {reviews.map((review) => (
          <ReviewList review={review} key={review.id} />
          ))}
         </div>
