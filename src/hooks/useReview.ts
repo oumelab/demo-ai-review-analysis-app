@@ -20,7 +20,11 @@ const fetcher: Fetcher<GoogleSheetResponse, string> = (url: string) =>
   }).then((res) => res.json());
 
 export const useReview = () => {
-  const {data, error, mutate} = useSWR<GoogleSheetResponse, Error>(URL, fetcher);
+  const {data, error, mutate} = useSWR<GoogleSheetResponse, Error>(URL, fetcher, {
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  });
 
   const valuesWithoutHeader = data?.values.slice(1);
   const reviews: Review[] = valuesWithoutHeader?.map((row: string[]) => ({
