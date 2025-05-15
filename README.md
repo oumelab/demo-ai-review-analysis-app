@@ -31,6 +31,7 @@ The code includes some modifications and enhancements made by me for personal le
 - [SWR](https://swr.vercel.app/)
 - [Google Sheets API](https://developers.google.com/sheets/api)
 - [Gemini API](https://aistudio.google.com/)
+- Cloudflare Pages(deployment)
 
 
 
