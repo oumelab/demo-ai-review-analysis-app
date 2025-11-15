@@ -30,7 +30,7 @@ Google Sheets のレビュー情報と AI を活用して、ユーザーのレ�
 
 ## セットアップ
 
-このプロジェクトは [Bun](https://bun.sh/) または [pnpm](https://pnpm.io/) で動作します。
+このプロジェクトは [Bun](https://bun.sh/) を利用しています。
 
 ```bash
 # リポジトリをクローン
@@ -39,22 +39,21 @@ cd demo-ai-review-analysis-app
 
 # 依存関係をインストール（Bun）
 bun install
-# または pnpm
-# pnpm install
 
 # 開発サーバーを起動
 bun dev
-# または pnpm dev
 ```
+### ユーザーレビューを Google Sheets に作成
+ユーザーレビューを Google Sheets に記載して保存
 
 ### API キーの設定
 
 `.env` に Google Sheets / Gemini API キーなどを設定してください。
 
 ```
-VITE_GOOGLE_SHEETS_ID=xxxx
-VITE_GOOGLE_API_KEY=xxxx
-VITE_GEMINI_API_KEY=xxxx
+VITE_SHEET_API_KEY=xxxx
+VITE_SHEET_ID=xxxx
+VITE_SHEET_NAME=xxxx
 ```
 
 ## 使い方
@@ -66,20 +65,10 @@ VITE_GEMINI_API_KEY=xxxx
 3. **ローディング/エラー時の補助 UI**
    SWR でフェッチ状態に応じた UI を自動表示します。
 
-## デモ
-
-[デモサイトはこちら](https://demo-ai-review-analysis-app.pages.dev/)
-
-<picture width="100%" height="auto">
-  <source srcset="./public/screenshot.webp" type="image/webp" />
-  <img src="./public/screenshot.png" alt="screenshot" />
-</picture>
-
 ## ビルド
 
 ```bash
 bun run build
-# または pnpm build
 ```
 
 ## 追加実装履歴
